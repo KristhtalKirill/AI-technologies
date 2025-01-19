@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server
+    container_name: image_processing_server
+    ports:
+      - "8080:8000"
+    restart: unless-stopped

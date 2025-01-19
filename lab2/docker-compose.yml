@@ -1,0 +1,16 @@
+services:
+  yolov5:
+    build: .
+    volumes:
+      - ./images/input:/workspace/images/input
+      - ./images/output:/workspace/images/output
+    command: python3 /workspace/scripts/yolo_image.py
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    runtime: nvidia
+    restart: unless-stopped
